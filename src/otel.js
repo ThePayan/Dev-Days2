@@ -8,16 +8,69 @@ import {
     ATTR_SERVICE_VERSION,
 } from '@opentelemetry/semantic-conventions';
 import { resourceFromAttributes } from '@opentelemetry/resources';
+import { ConsoleMetricExporter, MeterProvider, PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics';
+import { metrics } from '@opentelemetry/api';
 
 const resource = resourceFromAttributes({
     [ATTR_SERVICE_NAME]: 'my-node-service',
     [ATTR_SERVICE_VERSION]: '1.0.0',
 });
 
+const meterProvider = new MeterProvider({
+  resource,
+  readers: [
+    new PeriodicExportingMetricReader({
+      exporter: new ConsoleMetricExporter(),
+      exportIntervalMillis: 5000,
+    }),
+  ],
+});
+
+// Registrar globalmente
+metrics.setGlobalMeterProvider(meterProvider);
+
+
+class SimpleExporter {
+    _store = [];
+
+    export(spans, resultCallback) {
+        this._store.push(...spans);
+        // console.log(`Exported ${spans.length} spans`);
+        resultCallback({ code: 0 });
+    }
+
+    shutdown() {
+        return Promise.resolve();
+    }
+
+    getFinishedSpans() {
+        return this._store;
+    }
+}
+
+const meter = metrics.getMeter('user-controller-meter');
+const userCreationCounter = meter.createCounter('user_creation_count', {
+    description: 'Counts number of users created',
+    unit: "users",
+});
+export const addUser = (req, res) => {
+    userCreationCounter.add(1);
+    try {
+        const newUser = createUser(req.body);
+        res.status(201).json(newUser);
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+export const traceExporter = new SimpleExporter();
+
+
 const tracerProvider = new NodeTracerProvider({
     resource,
     spanProcessors: [
         new SimpleSpanProcessor(new ConsoleSpanExporter()),
+        new SimpleSpanProcessor(traceExporter),
     ],
 });
 

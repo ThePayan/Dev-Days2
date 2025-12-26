@@ -1,0 +1,370 @@
+{
+  "info": {
+    "_postman_id": "ec55dc53-7baa-436c-8929-18fea1f03c7f",
+    "name": "Dev-Days25",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Tema1",
+      "item": [
+        {
+          "name": "Create a User",
+          "id": "333ad8f6-ce2e-48a4-a383-3853ec81c6d4",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \r\n    \"name\": \"Juan Pérez\", \r\n    \"email\": \"juan.perez@example.com\" \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/v1/users/",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "AllUsers",
+          "id": "7aadab39-0329-42ef-a2ba-b18f430695df",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/v1/users",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get a User By Id",
+          "id": "69d35230-d200-4459-be90-51e72bd1e7fe",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/v1/users/2",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DeleteUserById",
+          "id": "45580e8b-dee8-4017-8288-52f40d673b19",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/v1/users/2",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "UpdateUserById",
+          "id": "c648f43c-5032-4885-aa46-9cab52cbd8af",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Paco Hernández\",\r\n    \"email\": \"paquitochocolate@example.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/v1/users/1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PatchUser",
+          "id": "e6fb58bb-9065-4ecc-9333-17abe6f66781",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Paco Fiesta\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/v1/users/1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "a5e8ac0a-720f-42e4-9478-5e619dc60ad0"
+    },
+    {
+      "name": "Tema2",
+      "item": [
+        {
+          "name": "AllIssues",
+          "id": "c295ce8a-f4fd-4d08-b827-10b53e26803d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Juaaaaaaaaaaaaaaa\",\r\n    \"email\": \"juan.perez@example.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/v1/issues",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "issues"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "FetchIssues",
+          "id": "841b2906-36b7-4588-96bb-4259345a5d5a",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"repository\": {\r\n        \"owner\": \"glzr-io\",\r\n        \"name\": \"glazewm\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/v1/issues/fetch",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "issues",
+                "fetch"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "a17f6a41-84e8-4f90-ba0b-edb8e2c68e0f"
+    },
+    {
+      "name": "Tema5",
+      "item": [
+        {
+          "name": "AllAudits",
+          "id": "a17fac9a-be87-4311-ad2c-0017e3fd1559",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetAuditById",
+          "id": "ade299a7-ddc4-41d4-92ec-7cbbcb31c26b",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/v1/audits/audit-1766404779901",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "audits",
+                "audit-1766404779901"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateAllAuditsWithIssues",
+          "id": "7c79b75a-5d07-4e9a-a501-9a8a1e974261",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/audits/issues",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "audits",
+                "issues"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "4eb6fe16-54e9-4c89-9803-1ff2386d1759"
+    },
+    {
+      "name": "Tema6",
+      "item": [
+        {
+          "name": "ChatWithAnAI",
+          "id": "b6b2dcdc-c9d2-4f65-81d0-74b4ad1c92f3",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"prompt\": \"Que modelo eres?\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/ai/chat",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "ai",
+                "chat"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "bed1c348-5daa-4946-83ee-a87ff882b2a9"
+    }
+  ],
+  "variable": [
+    {
+      "id": "35e289c3-9623-4f5d-9457-ed0e9accc594",
+      "key": "baseURL",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}

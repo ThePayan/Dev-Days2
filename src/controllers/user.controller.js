@@ -1,11 +1,19 @@
 import { getAllUsers, getUserById, createUser, deleteUserById, updateUserById, patchUserById} from '../services/user.service.js';
+import { trace } from '@opentelemetry/api';
 
-export const getUsers = (req, res) => {
+const tracer = trace.getTracer('user-controller-tracer');
+
+export const getUsers = async (req, res) => {
+    const span = tracer.startSpan('getUsers');
     try {
+    await new Promise(resolve => setTimeout(resolve, 100)); // Simula una operación asincrónica
     const users = getAllUsers();
-    res.status(200).json(users);
+    span.setAttribute('user.count', users.length);
+    res.status(200).json(users);  
     } catch (error) {
         res.status(500).json({ message: 'Internal Server Error' });
+    } finally {
+        span.end();
     }
 }
 

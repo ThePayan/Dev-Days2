@@ -5,6 +5,7 @@ import { bundle } from '@readme/openapi-parser';
 import { issueRouter } from './routes/issue.routes.js';
 import { auditRouter } from './routes/audit.routes.js';
 import { aiRouter } from './routes/ai.routes.js';
+import { telemetryRouter } from './routes/telemetry.routes.js';
 
 // Bundle OpenAPI and set up Swagger UI
 bundle('src/docs/openapi.yaml')
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
     res.send('APP: Hello, ISA DevDays 2025!');
 });
 
+app.use('/api/v1', telemetryRouter);
 app.use('/api/v1', userRouter);
 app.use('/api/v1', issueRouter);
 app.use('/api/v1', auditRouter);
