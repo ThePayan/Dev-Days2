@@ -1,4 +1,4 @@
-import { getAllUsers, getUserById, createUser, deleteUserById} from '../services/user.service.js';
+import { getAllUsers, getUserById, createUser, deleteUserById, updateUserById, patchUserById} from '../services/user.service.js';
 
 export const getUsers = (req, res) => {
     try {
@@ -32,6 +32,21 @@ export const addUser = (req, res) => {
     }
 };
 
+
+export const updateUser = (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedUser = updateUserById(id, req.body);
+        if (updatedUser) {
+            res.status(200).json(updatedUser);
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
 export const removeUser = (req, res) => {
     try {
         const { id } = req.params;
@@ -45,3 +60,17 @@ export const removeUser = (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+export const patchUser = (req, res) => {
+        try {
+            const { id } = req.params;
+        const updatedUser = patchUserById(id, req.body);
+        if (updatedUser) {
+            res.status(200).json(updatedUser);
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+

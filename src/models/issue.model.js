@@ -23,6 +23,10 @@ const issueSchema = new mongoose.Schema({
         required: true,
     },
     // TODO: Store the updatedAt field from the GitHub issue
+    updatedAt: {
+        type: Date,
+        required: true, //por lo visto al crearse, updatedAt tiene el valor de createdAt
+    },
     title: {
         type: String,
         required: true,

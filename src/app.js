@@ -6,6 +6,15 @@ import { issueRouter } from './routes/issue.routes.js';
 import { auditRouter } from './routes/audit.routes.js';
 import { aiRouter } from './routes/ai.routes.js';
 
+// Bundle OpenAPI and set up Swagger UI
+bundle('src/docs/openapi.yaml')
+    .then((api) => {
+        app.use('/docs', swaggerUi.serve, swaggerUi.setup(api));
+    })
+    .catch((err) => {
+        console.error('Error loading OpenAPI document:', err);
+    });
+    
 const app = express();
 app.use(express.json());
 

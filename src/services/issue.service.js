@@ -28,6 +28,7 @@ export const saveIssues = async (issues) => {
                 url: issueData.html_url,
                 state: issueData.state,
                 createdAt: issueData.created_at,
+                updatedAt: issueData.updated_at,
             };
             savedIssues.push(await IssueRepository.create(newIssue));
         } else {

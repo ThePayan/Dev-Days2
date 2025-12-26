@@ -1,10 +1,10 @@
 const users = [{
-    id: 1,
+    id: '1',
     name: 'John Doe',
     email: 'john.doe@example.com'
 },
 {
-    id: 2,
+    id: '2',
     name: 'Jane Smith',
     email: 'jane.smith@example.com'
 }];
@@ -34,4 +34,22 @@ export const createUser = (user) => {
     };
     users.push(newUser);
     return newUser;
+}
+
+export const updateUserById = (id, updatedInfo) => {
+    const user = users.find(user => user.id === id);
+    if (user) {
+        user.name = updatedInfo.name || user.name;
+        user.email = updatedInfo.email || user.email;
+        return user;
+    } 
+} 
+
+export const patchUserById = (id, updatedInfo) => {
+    const user = users.find(user => user.id === id);
+    if (user) {
+        user.name = updatedInfo.name || user.name;
+        user.email = updatedInfo.email || user.email;
+        return user;
+    }
 }
