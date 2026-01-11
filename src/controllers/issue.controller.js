@@ -35,3 +35,16 @@ export const fetchGithubIssues = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
+export const fetchGithubIssuesPaginated = async (req, res) => {
+    const repoOwner = req.body.repository.owner;
+    const repoName = req.body.repository.name;
+    try {
+        const githubIssues = await issueService.fetchGithubIssuesPaginated(repoOwner, repoName);
+        const savedIssues = await issueService.saveIssues(githubIssues);
+        res.status(200).json(savedIssues);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};

@@ -248,6 +248,36 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "FetchIssuesPaginated",
+          "id": "e6244c42-7b91-4f70-87e3-8d2f9179fd47",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"repository\": {\r\n        \"owner\": \"glzr-io\",\r\n        \"name\": \"glazewm\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/v1/issues/fetch-paginated",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "issues",
+                "fetch-paginated"
+              ]
+            }
+          },
+          "response": []
         }
       ],
       "id": "a17f6a41-84e8-4f90-ba0b-edb8e2c68e0f"
