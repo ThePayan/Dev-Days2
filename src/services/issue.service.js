@@ -1,11 +1,4 @@
-import axios from 'axios';
 import IssueRepository from '../repositories/issue.repository.js';
-
-const githubHeaders = {
-    Accept: 'application/vnd.github+json',
-    'User-Agent': 'dev-days-app',
-    ...(process.env.GITHUB_TOKEN ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } : {}),
-};
 
 export const getAllIssues = async () => {
     return await IssueRepository.findAll();
@@ -15,31 +8,21 @@ export const getIssueByIssueId = async (issueId) => {
     return await IssueRepository.findByIssueId(issueId);
 };
 
+import { fetchGithubPaginated } from './github.js';
+
 export const fetchGithubIssues = async (repoOwner, repoName) => {
-    const response = await axios.get(
-        `https://api.github.com/repos/${repoOwner}/${repoName}/issues`,
-        { params: { state: 'all' }, headers: githubHeaders },
+    return await fetchGithubPaginated(
+       `https://api.github.com/repos/${repoOwner}/${repoName}/issues`,
+       { state: 'all' }
     );
-    return response.data;
 };
 
-// Descarga todas las páginas de issues de GitHub de forma recursiva (simple)
+// Mantenemos la firma de la función para compatibilidad, pero delegamos al cliente genérico
 export const fetchGithubIssuesPaginated = async (repoOwner, repoName, page = 1, perPage = 100) => {
-    const response = await axios.get(`https://api.github.com/repos/${repoOwner}/${repoName}/issues`, {
-        params: { state: 'all', page, per_page: perPage },
-        headers: githubHeaders,
-    });
-
-    const currentPage = response.data;
-
-    // Si la página está llena, asume que hay más y llama a la siguiente
-    if (currentPage.length === perPage) {
-        const nextPages = await fetchGithubIssuesPaginated(repoOwner, repoName, page + 1, perPage);
-        return [...currentPage, ...nextPages];
-    }
-
-    // Caso base: última página
-    return currentPage;
+    return await fetchGithubPaginated(
+        `https://api.github.com/repos/${repoOwner}/${repoName}/issues`,
+        { state: 'all', page, per_page: perPage }
+    );
 };
 
 
