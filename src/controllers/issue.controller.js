@@ -42,7 +42,7 @@ export const fetchGithubIssuesPaginated = async (req, res) => {
     try {
         const githubIssues = await issueService.fetchGithubIssuesPaginated(repoOwner, repoName);
         const savedIssues = await issueService.saveIssues(githubIssues);
-        res.status(200).json(savedIssues);
+        res.status(201).json(savedIssues);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
