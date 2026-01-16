@@ -7,8 +7,11 @@ import { auditRouter } from './routes/audit.routes.js';
 import { aiRouter } from './routes/ai.routes.js';
 import { telemetryRouter } from './routes/telemetry.routes.js';
 
+import { responseTimeMiddleware } from './middlewares/response-time.middleware.js';
+
 const app = express();
 app.use(express.json());
+app.use(responseTimeMiddleware);
 
 app.get('/', (req, res) => {
     res.send('APP: Hello, ISA DevDays 2025!');

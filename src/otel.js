@@ -10,10 +10,19 @@ import {
 import { resourceFromAttributes } from '@opentelemetry/resources';
 import { ConsoleMetricExporter, MeterProvider, PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics';
 import { metrics } from '@opentelemetry/api';
+import { PrometheusExporter } from '@opentelemetry/exporter-prometheus';
 
 const resource = resourceFromAttributes({
     [ATTR_SERVICE_NAME]: 'my-node-service',
     [ATTR_SERVICE_VERSION]: '1.0.0',
+});
+
+
+
+const prometheusExporter = new PrometheusExporter({
+  startServer: true,
+  port: 9464,
+  endpoint: '/metrics',
 });
 
 const meterProvider = new MeterProvider({
@@ -23,6 +32,7 @@ const meterProvider = new MeterProvider({
       exporter: new ConsoleMetricExporter(),
       exportIntervalMillis: 5000,
     }),
+    prometheusExporter,
   ],
 });
 

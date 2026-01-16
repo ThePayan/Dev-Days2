@@ -12,7 +12,7 @@ export const generateAIResponse = async (req, res) => {
         const aiService = getAIService();
         const aiResponse = await aiService.generateText(prompt);
 
-        return res.status(200).json({ response: aiResponse });
+        return res.status(201).json({ response: aiResponse });
     } catch (error) {
         console.error('Error in generateAIResponse:', error);
         return res.status(500).json({ 
