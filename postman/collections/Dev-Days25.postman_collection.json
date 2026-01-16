@@ -343,6 +343,38 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "AuditWeathers",
+          "id": "0500d5d8-bdbf-401e-bf8d-6d421505f68b",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"city\": \"Seville\",\r\n    \"temp\": 15,\r\n    \"days\": 7\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/audits/weather",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "audits",
+                "weather"
+              ]
+            }
+          },
+          "response": []
         }
       ],
       "id": "4eb6fe16-54e9-4c89-9803-1ff2386d1759"

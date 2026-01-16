@@ -31,3 +31,14 @@ export const auditIssues = async (req, res) => {
   res.status(500).json({ message: 'Internal server error' });
  }
 };
+
+export const auditWeather = async (req, res) => {
+    try {
+        const { city, temp, days } = req.body;
+        const weatherAudits = await auditService.auditWeather(city, temp, days);
+        res.status(201).json(weatherAudits);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};

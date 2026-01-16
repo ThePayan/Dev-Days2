@@ -1,4 +1,5 @@
 import IssueRepository from '../repositories/issue.repository.js';
+import { fetchGithubPaginated } from './github.js';
 
 export const getAllIssues = async () => {
     return await IssueRepository.findAll();
@@ -8,7 +9,7 @@ export const getIssueByIssueId = async (issueId) => {
     return await IssueRepository.findByIssueId(issueId);
 };
 
-import { fetchGithubPaginated } from './github.js';
+
 
 export const fetchGithubIssues = async (repoOwner, repoName) => {
     return await fetchGithubPaginated(
@@ -17,7 +18,6 @@ export const fetchGithubIssues = async (repoOwner, repoName) => {
     );
 };
 
-// Mantenemos la firma de la función para compatibilidad, pero delegamos al cliente genérico
 export const fetchGithubIssuesPaginated = async (repoOwner, repoName, page = 1, perPage = 100) => {
     return await fetchGithubPaginated(
         `https://api.github.com/repos/${repoOwner}/${repoName}/issues`,
@@ -32,7 +32,6 @@ export const saveIssues = async (issues) => {
     for (const issueData of issues) {
         const existingIssue = await IssueRepository.findByIssueId(issueData.id);
         if (!existingIssue) {
-            // TODO: Store the updated_at field from the GitHub issue
             const newIssue = {
                 issueId: issueData.id,
                 number: issueData.number,
