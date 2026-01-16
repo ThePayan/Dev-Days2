@@ -248,36 +248,6 @@
             }
           },
           "response": []
-        },
-        {
-          "name": "FetchIssuesPaginated",
-          "id": "e6244c42-7b91-4f70-87e3-8d2f9179fd47",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"repository\": {\r\n        \"owner\": \"glzr-io\",\r\n        \"name\": \"glazewm\"\r\n    }\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseURL}}/api/v1/issues/fetch-paginated",
-              "host": [
-                "{{baseURL}}"
-              ],
-              "path": [
-                "api",
-                "v1",
-                "issues",
-                "fetch-paginated"
-              ]
-            }
-          },
-          "response": []
         }
       ],
       "id": "a17f6a41-84e8-4f90-ba0b-edb8e2c68e0f"
@@ -343,38 +313,6 @@
             }
           },
           "response": []
-        },
-        {
-          "name": "AuditWeathers",
-          "id": "0500d5d8-bdbf-401e-bf8d-6d421505f68b",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"city\": \"Seville\",\r\n    \"temp\": 15,\r\n    \"days\": 7\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3000/api/v1/audits/weather",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3000",
-              "path": [
-                "api",
-                "v1",
-                "audits",
-                "weather"
-              ]
-            }
-          },
-          "response": []
         }
       ],
       "id": "4eb6fe16-54e9-4c89-9803-1ff2386d1759"
@@ -419,6 +357,115 @@
         }
       ],
       "id": "bed1c348-5daa-4946-83ee-a87ff882b2a9"
+    },
+    {
+      "name": "N1",
+      "item": [
+        {
+          "name": "FetchIssuesPaginated",
+          "id": "e6244c42-7b91-4f70-87e3-8d2f9179fd47",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"repository\": {\r\n        \"owner\": \"glzr-io\",\r\n        \"name\": \"glazewm\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/v1/issues/fetch-paginated",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "issues",
+                "fetch-paginated"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "24516114-b689-4084-9093-4037f8ae1606"
+    },
+    {
+      "name": "N2",
+      "item": [
+        {
+          "name": "Get Weather Audio Summary",
+          "id": "9ae57446-ab9d-4615-ac0c-27fab7611cb1",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"city\": \"Seville\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/ai/weather-summary",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "ai",
+                "weather-summary"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "AuditWeathers",
+          "id": "0500d5d8-bdbf-401e-bf8d-6d421505f68b",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"city\": \"Seville\",\r\n    \"temp\": 15,\r\n    \"days\": 7\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/audits/weather",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "audits",
+                "weather"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "32ca9312-3ed8-43cd-8edf-6db176651dd9"
     }
   ],
   "variable": [

@@ -1,5 +1,6 @@
 import auditRepository from '../repositories/audit.repository.js';
 import IssueRepository from '../repositories/issue.repository.js';
+import { getCoordinates } from './weather.service.js';
 
 export const getAllAudits = async () => {
  return await auditRepository.findAll();
@@ -32,34 +33,7 @@ export const auditIssues = async () => {
  return auditCreated;
 };
 
-const getCoordinates = async (city) => {
-    const params = new URLSearchParams({
-        name: city,
-        count: '1',
-        language: 'en',
-        format: 'json'
-    });
-    const url = `https://geocoding-api.open-meteo.com/v1/search?${params.toString()}`;
 
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        
-        if (!data.results || data.results.length === 0) {
-            throw new Error(`Coordinates not found for city: ${city}`);
-        }
-        
-        return {
-            latitude: data.results[0].latitude,
-            longitude: data.results[0].longitude,
-            name: data.results[0].name,
-            country: data.results[0].country
-        };
-    } catch (error) {
-        console.error('Error fetching coordinates:', error);
-        throw error;
-    }
-};
 
 export const auditWeather = async (city = 'Seville', temp = 18, days = 21) => {
     try {
